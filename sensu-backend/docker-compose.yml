@@ -1,0 +1,29 @@
+version: "3"
+services:
+  sensu-backend:
+    container_name: sensu-backend
+    image: sensu/sensu:latest
+    hostname: sensu-backend
+    restart: always
+    ports:
+      - "8900:2380"
+      - "8901:3000"
+      - "8902:8080"
+      - "8903:8081"
+    labels:
+      - "traefik.frontend.rule=Host:sensu.lab.test"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.port=3000"
+    networks:
+      - traefik
+      - sensu-backend
+    volumes:
+      - "./data:/var/lib/sensu"
+    command: "sensu-backend start"
+networks:
+  traefik:
+    external:
+      name: traefik
+  sensu-backend:
+    external:
+      name: sensu-backend

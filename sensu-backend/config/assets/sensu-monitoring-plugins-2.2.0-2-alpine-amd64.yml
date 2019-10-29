@@ -1,0 +1,22 @@
+---
+type: Asset
+api_version: core/v2
+metadata:
+  name: monitoring-plugins_alpine_amd64
+  labels: 
+  annotations:
+    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/monitoring-plugins
+    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/sensu/monitoring-plugins
+    io.sensu.bonsai.tier: Community
+    io.sensu.bonsai.version: 2.2.0-2
+    io.sensu.bonsai.namespace: sensu
+    io.sensu.bonsai.name: monitoring-plugins
+    io.sensu.bonsai.tags: ''
+spec:
+  url: https://assets.bonsai.sensu.io/8d83ae5503608d420810acd37a775f24e10dae17/monitoring-plugins-alpine_2.2.0-2_linux_amd64.tar.gz
+  sha512: a6ca2abfd6c4b7752e5f05b35152f035022f9243e674d3176bc2e650f5b005b5d97f513459d9fccebf1bd1837e19c706764569de04a270d1bc2e0f21f8ed4c35
+  filters:
+  - entity.system.os == 'linux'
+  - entity.system.platform == 'alpine'
+  - entity.system.arch == 'amd64'
+

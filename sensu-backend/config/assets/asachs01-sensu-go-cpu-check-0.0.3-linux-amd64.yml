@@ -1,0 +1,20 @@
+---
+type: Asset
+api_version: core/v2
+metadata:
+  name: sensu-go-cpu-check_linux_amd64
+  labels: 
+  annotations:
+    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/asachs01/sensu-go-cpu-check
+    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/asachs01/sensu-go-cpu-check
+    io.sensu.bonsai.tier: Community
+    io.sensu.bonsai.version: 0.0.3
+    io.sensu.bonsai.namespace: asachs01
+    io.sensu.bonsai.name: sensu-go-cpu-check
+    io.sensu.bonsai.tags: windows, linux, osx, cpu, system
+spec:
+  url: https://assets.bonsai.sensu.io/981307deb10ebf1f1433a80da5504c3c53d5c44f/sensu-go-cpu-check_0.0.3_linux_amd64.tar.gz
+  sha512: 487ab34b37da8ce76d2657b62d37b35fbbb240c3546dd463fa0c37dc58a72b786ef0ca396a0a12c8d006ac7fa21923e0e9ae63419a4d56aec41fccb574c1a5d3
+  filters:
+  - entity.system.os == 'linux'
+  - entity.system.arch == 'amd64'

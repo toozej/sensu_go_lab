@@ -1,0 +1,32 @@
+type: CheckConfig
+api_version: core/v2
+metadata:
+  name: check_disk
+  namespace: default
+  annotations:
+    fatigue_check/occurrences: "3"
+    fatigue_check/interval: "3600"
+    fatigue_check/allow_resolution: "true"
+    fatigue_check/suppress_flapping: "true"
+spec:
+  check_hooks: null
+  command: check_disk -w 10% -c 5%
+  env_vars: null
+  handlers: ["slack"]
+  high_flap_threshold: 0
+  interval: 60
+  low_flap_threshold: 0
+  output_metric_format: ""
+  output_metric_handlers: null
+  proxy_entity_name: ""
+  publish: true
+  round_robin: false
+  runtime_assets:
+    - monitoring-plugins_alpine_amd64
+    - monitoring-plugins_centos_amd64
+  stdin: false
+  subdue: null
+  subscriptions:
+    - system
+  timeout: 0
+  ttl: 0

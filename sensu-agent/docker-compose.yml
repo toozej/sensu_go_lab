@@ -1,0 +1,19 @@
+version: '3'
+services:
+  sensu-agent:
+    container_name: sensu-agent
+    image: sensu/sensu:latest
+    hostname: sensu-agent
+    restart: always
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - "./data:/var/lib/sensu"
+    networks:
+      - sensu-backend
+    command: "sensu-agent start --backend-url ws://sensu-backend:8081 --subscriptions webserver,system --cache-dir /var/lib/sensu"
+
+networks:
+  sensu-backend:
+    external:
+      name: sensu-backend

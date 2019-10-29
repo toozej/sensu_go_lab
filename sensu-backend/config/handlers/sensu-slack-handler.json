@@ -1,0 +1,27 @@
+{
+  "type": "Handler",
+  "spec": {
+    "metadata": {
+      "name": "slack",
+      "namespace": "default",
+      "labels": null,
+      "annotations": null
+    },
+    "type": "pipe",
+    "command": "sensu-slack-handler -c \"${KEEPALIVE_SLACK_CHANNEL}\" -w \"${KEEPALIVE_SLACK_WEBHOOK}\"",
+    "timeout": 0,
+    "handlers": [],
+    "filters": [
+        "is_incident",
+        "not_silenced",
+        "fatigue_check"
+    ],
+    "env_vars": [
+      "KEEPALIVE_SLACK_WEBHOOK=https://hooks.slack.com/services/blahblahblah",
+      "KEEPALIVE_SLACK_CHANNEL=#sensu-poc"
+    ],
+    "runtime_assets": ["sensu-slack-handler"]
+  }
+}
+
+

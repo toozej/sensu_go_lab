@@ -1,0 +1,21 @@
+---
+type: Asset
+api_version: core/v2
+metadata:
+  name: sensu-plugins-process-checks_alpine_amd64
+  labels: 
+  annotations:
+    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-process-checks
+    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/sensu-plugins/sensu-plugins-process-checks
+    io.sensu.bonsai.tier: Community
+    io.sensu.bonsai.version: 4.0.0
+    io.sensu.bonsai.namespace: sensu-plugins
+    io.sensu.bonsai.name: sensu-plugins-process-checks
+    io.sensu.bonsai.tags: ruby-runtime-2.4.4
+spec:
+  url: https://assets.bonsai.sensu.io/2940de675113d07710c0f896efa8b43b7c301c5c/sensu-plugins-process-checks_4.0.0_alpine_linux_amd64.tar.gz
+  sha512: 6505e8d6da6c1208adfc23ad6ece5d37b8887e653862bf940018008e79859d850a8bcc2ab9221c359e36498753eb47ff89eaa2230e8957e5dd41eb98a54749bb
+  filters:
+  - entity.system.os == 'linux'
+  - entity.system.arch == 'amd64'
+  - entity.system.platform == 'alpine'
