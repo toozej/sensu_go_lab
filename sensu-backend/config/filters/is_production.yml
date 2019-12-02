@@ -1,0 +1,10 @@
+---
+type: EventFilter
+api_version: core/v2
+metadata:
+  name: is_production
+  namespace: default
+spec:
+  action: deny
+  expressions:
+    - event.entity.labels['environment'] != 'prod'

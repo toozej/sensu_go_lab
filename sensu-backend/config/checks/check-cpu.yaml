@@ -12,7 +12,7 @@ spec:
   check_hooks: null
   command: sensu-go-cpu-check -w 95 -c 98
   env_vars: null
-  handlers: ["slack"]
+  handlers: ["slack-pages", "slack-alerts"]
   high_flap_threshold: 0
   interval: 60
   low_flap_threshold: 0
