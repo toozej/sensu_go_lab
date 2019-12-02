@@ -1,0 +1,16 @@
+---
+type: EventFilter
+api_version: core/v2
+metadata:
+  annotations: null
+  labels: null
+  name: is_critical_incident
+  namespace: default
+spec:
+  action: deny
+  expressions:
+    # deny (filter) event if status is warning (1) or OK (0), and event is not a resolution
+    # to be used to avoid sending warnings and OKs to pager
+    - event.check.status <= 1 && event.is_resolution == false
+    # TODO need to fix that non-critical resolutions make it through this filter
+  runtime_assets: []

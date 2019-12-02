@@ -12,7 +12,7 @@ spec:
   check_hooks: null
   command: check_swap -w 99% -c 10%
   env_vars: null
-  handlers: ["slack"]
+  handlers: ["slack-pages", "slack-alerts"]
   high_flap_threshold: 0
   interval: 60
   low_flap_threshold: 0

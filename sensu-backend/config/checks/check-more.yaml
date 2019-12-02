@@ -1,7 +1,7 @@
 type: CheckConfig
 api_version: core/v2
 metadata:
-  name: check_vim
+  name: check_more
   namespace: default
   annotations:
     fatigue_check/occurrences: "3"
@@ -10,7 +10,7 @@ metadata:
     fatigue_check/suppress_flapping: "true"
 spec:
   check_hooks: null
-  command: "check_procs -c :0 -C vi"
+  command: "check_procs -w :0 -C more"
   env_vars: null
   handlers: ["slack-pages", "slack-alerts"]
   high_flap_threshold: 0

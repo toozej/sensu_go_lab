@@ -51,8 +51,8 @@ log-level: "debug" # available log levels: panic, fatal, error, warn, info, debu
 ##
 # security configuration
 ##
-#cert-file: "/etc/sensu/ssl/agent/sensu-agent-centos-1.pem"
-#key-file: "/etc/sensu/ssl/agent/sensu-agent-centos-1-key.pem"
+#cert-file: "/etc/sensu/ssl/agent/sensu-agent-centos-3.pem"
+#key-file: "/etc/sensu/ssl/agent/sensu-agent-centos-3-key.pem"
 trusted-ca-file: "/etc/sensu/ssl/ca/ca.pem"
 insecure-skip-tls-verify: false
 #redact:

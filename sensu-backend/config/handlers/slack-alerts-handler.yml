@@ -1,0 +1,19 @@
+---
+api_version: core/v2
+type: Handler
+metadata:
+  name: slack-alerts
+  namespace: default
+spec:
+  type: pipe
+  command: 'sensu-slack-handler -c "${ALERTS_SLACK_CHANNEL}" -w "${ALERTS_SLACK_WEBHOOK}"'
+  timeout: 0
+  filters:
+    - is_incident
+    - not_silenced
+    - fatigue_check
+  env_vars:
+    - ALERTS_SLACK_WEBHOOK=https://hooks.slack.com/services/blahblahblah
+    - ALERTS_SLACK_CHANNEL=#sensu-alerts
+  runtime_assets:
+    - sensu-slack-handler

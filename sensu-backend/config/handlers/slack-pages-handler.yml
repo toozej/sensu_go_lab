@@ -1,0 +1,20 @@
+---
+api_version: core/v2
+type: Handler
+metadata:
+  name: slack-pages
+  namespace: default
+spec:
+  type: pipe
+  command: 'sensu-slack-handler -c "${PAGES_SLACK_CHANNEL}" -w "${PAGES_SLACK_WEBHOOK}"'
+  timeout: 0
+  filters:
+    - is_production
+    - is_critical_incident
+    - not_silenced
+    - fatigue_check
+  env_vars:
+    - PAGES_SLACK_WEBHOOK=https://hooks.slack.com/services/blahblah
+    - PAGES_SLACK_CHANNEL=#sensu-pages
+  runtime_assets:
+    - sensu-slack-handler
