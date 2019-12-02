@@ -4,7 +4,7 @@ services:
     container_name: sensu-load-balancer
     image: haproxy:latest
     hostname: sensu-load-balancer
-    restart: always
+    restart: unless-stopped
     ports:
       - "8000:70" # haproxy stats port
       - "3000:3000" # sensu go webUI port
