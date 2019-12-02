@@ -1,0 +1,10 @@
+---
+type: User
+api_version: core/v2
+metadata: {}
+spec:
+  disabled: false
+  groups:
+    - reader
+  password: P@ssw0rd!
+  username: alice

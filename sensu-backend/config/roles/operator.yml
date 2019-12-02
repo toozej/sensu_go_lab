@@ -1,0 +1,14 @@
+---
+api_version: core/v2
+type: ClusterRole
+metadata:
+  name: operator
+spec:
+  rules:
+    - resource_names: []
+      resources:
+        - events
+        - silenced
+      verbs:
+        - update
+        - delete

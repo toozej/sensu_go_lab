@@ -1,0 +1,33 @@
+---
+type: ClusterRole
+api_version: core/v2
+metadata:
+  name: superuser
+spec:
+  rules:
+    - resource_names: []
+      resources:
+        - assets
+        - checks
+        - entities
+        - events
+        - filters
+        - handlers
+        - hooks
+        - mutators
+        - rolebindings
+        - roles
+        - silenced
+        - cluster
+        - clusterrolebindings
+        - clusterroles
+        - namespaces
+        - users
+        - authproviders
+        - license
+      verbs:
+        - get
+        - list
+        - create
+        - update
+        - delete

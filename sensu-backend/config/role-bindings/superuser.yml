@@ -1,0 +1,12 @@
+---
+type: ClusterRoleBinding
+api_version: core/v2
+metadata:
+  name: superuser
+spec:
+  role_ref:
+    name: superuser
+    type: ClusterRole
+  subjects:
+    - name: superuser
+      type: Group

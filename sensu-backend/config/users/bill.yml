@@ -1,0 +1,12 @@
+---
+type: User
+api_version: core/v2
+metadata: {}
+spec:
+  disabled: false
+  groups:
+    - operator
+    - reader
+    - oncall
+  password: P@ssw0rd!
+  username: bill
