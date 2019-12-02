@@ -1,0 +1,28 @@
+version: "3"
+services:
+  sensu-load-balancer:
+    container_name: sensu-load-balancer
+    image: haproxy:latest
+    hostname: sensu-load-balancer
+    restart: always
+    ports:
+      - "8000:70" # haproxy stats port
+      - "3000:3000" # sensu go webUI port
+      - "8080:8080" # sensu go api port
+      - "8081:8081" # sensu go agent transport port
+    labels:
+      - "traefik.frontend.rule=Host:sensu.lab.test"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.port=3000" # export sensu go webUI port (http) to traefik to serve (with cert as https)
+    networks:
+      - traefik
+      - sensu-load-balancer
+    volumes:
+      - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
+networks:
+  sensu-load-balancer:
+    external:
+      name: sensu-load-balancer
+  traefik:
+    external:
+      name: traefik
