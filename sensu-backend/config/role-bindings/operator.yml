@@ -1,0 +1,12 @@
+---
+type: ClusterRoleBinding
+api_version: core/v2
+metadata:
+  name: operator
+spec:
+  role_ref:
+    name: operator
+    type: ClusterRole
+  subjects:
+    - name: oncall
+      type: Group

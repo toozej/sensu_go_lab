@@ -1,0 +1,12 @@
+---
+type: ClusterRoleBinding
+api_version: core/v2
+metadata:
+  name: reader
+spec:
+  role_ref:
+    name: reader
+    type: ClusterRole
+  subjects:
+    - name: reader
+      type: Group

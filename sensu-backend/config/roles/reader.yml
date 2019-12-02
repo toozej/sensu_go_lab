@@ -1,0 +1,23 @@
+---
+api_version: core/v2
+type: ClusterRole
+metadata:
+  name: reader
+spec:
+  rules:
+    - resource_names: []
+      resources:
+        - assets
+        - checks
+        - entities
+        - events
+        - filters
+        - handlers
+        - hooks
+        - mutators
+        - rolebindings
+        - roles
+        - silenced
+      verbs:
+        - get
+        - list

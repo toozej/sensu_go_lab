@@ -1,0 +1,11 @@
+---
+type: User
+api_version: core/v2
+metadata: {}
+spec:
+  disabled: false
+  groups:
+    - superuser
+    - oncall
+  password: P@ssw0rd!
+  username: james
