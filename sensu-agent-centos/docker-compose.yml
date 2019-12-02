@@ -13,6 +13,7 @@ services:
     volumes:
       - "./data1:/var/lib/sensu"
       - "./agent1.yml:/etc/sensu/agent.yml"
+      - "../ssl:/etc/sensu/ssl"
     networks:
       - sensu-load-balancer
     command: "sensu-agent start"
@@ -30,6 +31,7 @@ services:
     volumes:
       - "./data2:/var/lib/sensu"
       - "./agent2.yml:/etc/sensu/agent.yml"
+      - "../ssl:/etc/sensu/ssl"
     networks:
       - sensu-load-balancer
     command: "sensu-agent start"
@@ -47,6 +49,7 @@ services:
     volumes:
       - "./data3:/var/lib/sensu"
       - "./agent3.yml:/etc/sensu/agent.yml"
+      - "../ssl:/etc/sensu/ssl"
     networks:
       - sensu-load-balancer
     command: "sensu-agent start"

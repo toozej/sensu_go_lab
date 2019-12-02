@@ -16,48 +16,51 @@ log-level: "debug" # available log levels: panic, fatal, error, warn, info, debu
 ##
 #agent-host: "[::]" # listen on all IPv4 and IPv6 addresses
 #agent-port: 8081
+#agent-auth-cert-file: "/etc/sensu/ssl/agent/all.pem"
+#agent-auth-key-file: "/etc/sensu/ssl/agent/all-key.pem"
+#agent-auth-trusted-ca-file: "/etc/sensu/ssl/ca/ca.pem"
 
 ##
 # api configuration
 ##
 #api-listen-address: "[::]:8080" # listen on all IPv4 and IPv6 addresses
-#api-url: "http://localhost:8080"
+api-url: "https://localhost:8080"
 
 ##
 # dashboard configuration
 ##
-#dashboard-cert-file: "/path/to/ssl/cert.pem"
-#dashboard-key-file: "/path/to/ssl/key.pem"
+dashboard-cert-file: "/etc/sensu/ssl/dashboard/dashboard.pem"
+dashboard-key-file: "/etc/sensu/ssl/dashboard/dashboard-key.pem"
 #dashboard-host: "[::]" # listen on all IPv4 and IPv6 addresses
 #dashboard-port: 3000
 
 ##
 # ssl configuration
 ##
-#cert-file: "/path/to/ssl/cert.pem"
-#key-file: "/path/to/ssl/key.pem"
-#trusted-ca-file: "/path/to/trusted-certificate-authorities.pem"
-#insecure-skip-tls-verify: false
+cert-file: "/etc/sensu/ssl/api/sensu-backend-2.pem"
+key-file: "/etc/sensu/ssl/api/sensu-backend-2-key.pem"
+trusted-ca-file: "/etc/sensu/ssl/ca/ca.pem"
+insecure-skip-tls-verify: false
 
 ##
 # store configuration
 ##
-etcd-advertise-client-urls: "http://sensu-backend-2:2379"
-#etcd-cert-file: "/path/to/ssl/cert.pem"
-#etcd-client-cert-auth: false
-etcd-initial-advertise-peer-urls: "http://sensu-backend-2:2380"
-etcd-initial-cluster: "sensu-backend-1=http://sensu-backend-1:2380,sensu-backend-2=http://sensu-backend-2:2380,sensu-backend-3=http://sensu-backend-3:2380"
+etcd-advertise-client-urls: "https://sensu-backend-2:2379"
+etcd-cert-file: "/etc/sensu/ssl/etcd/sensu-backend-2.pem"
+etcd-client-cert-auth: true
+etcd-initial-advertise-peer-urls: "https://sensu-backend-2:2380"
+etcd-initial-cluster: "sensu-backend-1=https://sensu-backend-1:2380,sensu-backend-2=https://sensu-backend-2:2380,sensu-backend-3=https://sensu-backend-3:2380"
 etcd-initial-cluster-state: "new" # new or existing
 #etcd-initial-cluster-token: "sensu"
-#etcd-key-file: "/path/to/ssl/key.pem"
-etcd-listen-client-urls: "http://0.0.0.0:2379"
-etcd-listen-peer-urls: "http://0.0.0.0:2380"
+etcd-key-file: "/etc/sensu/ssl/etcd/sensu-backend-2-key.pem"
+etcd-listen-client-urls: "https://0.0.0.0:2379"
+etcd-listen-peer-urls: "https://0.0.0.0:2380"
 etcd-name: "sensu-backend-2"
-#etcd-peer-cert-file: "/path/to/ssl/cert.pem"
-#etcd-peer-client-cert-auth: false
-#etcd-peer-key-file: "/path/to/ssl/key.pem"
-#etcd-peer-trusted-ca-file: "/path/to/ssl/key.pem"
-#etcd-trusted-ca-file: "/path/to/ssl/key.pem"
+etcd-peer-cert-file: "/etc/sensu/ssl/etcd/sensu-backend-2.pem"
+etcd-peer-client-cert-auth: true
+etcd-peer-key-file: "/etc/sensu/ssl/etcd/sensu-backend-2-key.pem"
+etcd-peer-trusted-ca-file: "/etc/sensu/ssl/ca/ca.pem"
+etcd-trusted-ca-file: "/etc/sensu/ssl/ca/ca.pem"
 #no-embed-etcd: false
 #etcd-cipher-suits
 #  - TLS_EXAMPLE

@@ -8,7 +8,9 @@ name: "sensu-agent-centos-3"
 namespace: "default"
 subscriptions:
   - system
-#labels:
+labels:
+  environment: "prod"
+  host_type: "web"
 #  example_key: "example value"
 #annotations:
 #  example/key: "example value"
@@ -17,7 +19,7 @@ subscriptions:
 # agent configuration
 ##
 backend-url:
-  - "ws://sensu-backend:8081"
+  - "wss://sensu-backend:8081"
 cache-dir: "/var/cache/sensu/sensu-agent"
 config-file: "/etc/sensu/agent.yml"
 disable-assets: false
@@ -49,7 +51,10 @@ log-level: "debug" # available log levels: panic, fatal, error, warn, info, debu
 ##
 # security configuration
 ##
-#insecure-skip-tls-verify: false
+#cert-file: "/etc/sensu/ssl/agent/sensu-agent-centos-1.pem"
+#key-file: "/etc/sensu/ssl/agent/sensu-agent-centos-1-key.pem"
+trusted-ca-file: "/etc/sensu/ssl/ca/ca.pem"
+insecure-skip-tls-verify: false
 #redact:
 #  - password
 #  - passwd
@@ -60,7 +65,6 @@ log-level: "debug" # available log levels: panic, fatal, error, warn, info, debu
 #  - secret_key
 #  - private_key
 #  - secret
-#trusted-ca-file: "/path/to/trusted-certificate-authorities.pem"
 
 ##
 # socket configuration
