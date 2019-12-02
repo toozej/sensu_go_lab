@@ -1,29 +1,61 @@
 version: "3"
 services:
-  sensu-backend:
-    container_name: sensu-backend
+  sensu-backend-1:
+    container_name: sensu-backend-1
     image: sensu/sensu:latest
-    hostname: sensu-backend
+    hostname: sensu-backend-1
     restart: unless-stopped
     ports:
-      - "8900:2380"
-      - "8901:3000"
-      - "8902:8080"
-      - "8903:8081"
+      - "2379:2379" # etcd client port
+      - "2380:2380" # etcd peer port
+      - "6060:6060" # Go debugging port
     labels:
-      - "traefik.frontend.rule=Host:sensu.lab.test"
-      - "traefik.docker.network=traefik"
-      - "traefik.http.port=3000"
+      - "traefik.enable=false"
     networks:
-      - traefik
+      - sensu-load-balancer
       - sensu-backend
     volumes:
-      - "./data:/var/lib/sensu"
+      - "./data1:/var/lib/sensu"
+      - "./backend1.yml:/etc/sensu/backend.yml"
+    command: "sensu-backend start"
+  sensu-backend-2:
+    container_name: sensu-backend-2
+    image: sensu/sensu:latest
+    hostname: sensu-backend-2
+    restart: unless-stopped
+    ports:
+      - "12379:2379"
+      - "12380:2380"
+    labels:
+      - "traefik.enable=false"
+    networks:
+      - sensu-load-balancer
+      - sensu-backend
+    volumes:
+      - "./data2:/var/lib/sensu"
+      - "./backend2.yml:/etc/sensu/backend.yml"
+    command: "sensu-backend start"
+  sensu-backend-3:
+    container_name: sensu-backend-3
+    image: sensu/sensu:latest
+    hostname: sensu-backend-3
+    restart: unless-stopped
+    ports:
+      - "22379:2379"
+      - "22380:2380"
+    labels:
+      - "traefik.enable=false"
+    networks:
+      - sensu-load-balancer
+      - sensu-backend
+    volumes:
+      - "./data3:/var/lib/sensu"
+      - "./backend3.yml:/etc/sensu/backend.yml"
     command: "sensu-backend start"
 networks:
-  traefik:
+  sensu-load-balancer:
     external:
-      name: traefik
+      name: sensu-load-balancer
   sensu-backend:
     external:
       name: sensu-backend

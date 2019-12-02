@@ -14,7 +14,7 @@ services:
       - "./data1:/var/lib/sensu"
       - "./agent1.yml:/etc/sensu/agent.yml"
     networks:
-      - sensu-backend
+      - sensu-load-balancer
     command: "sensu-agent start"
 
   sensu-agent-centos-2:
@@ -31,7 +31,7 @@ services:
       - "./data2:/var/lib/sensu"
       - "./agent2.yml:/etc/sensu/agent.yml"
     networks:
-      - sensu-backend
+      - sensu-load-balancer
     command: "sensu-agent start"
   
   sensu-agent-centos-3:
@@ -48,10 +48,10 @@ services:
       - "./data3:/var/lib/sensu"
       - "./agent3.yml:/etc/sensu/agent.yml"
     networks:
-      - sensu-backend
+      - sensu-load-balancer
     command: "sensu-agent start"
 
 networks:
-  sensu-backend:
+  sensu-load-balancer:
     external:
-      name: sensu-backend
+      name: sensu-load-balancer

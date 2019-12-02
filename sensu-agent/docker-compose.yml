@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   sensu-agent:
     container_name: sensu-agent
@@ -10,10 +10,10 @@ services:
     volumes:
       - "./data:/var/lib/sensu"
     networks:
-      - sensu-backend
-    command: "sensu-agent start --backend-url ws://sensu-backend:8081 --subscriptions webserver,system --cache-dir /var/lib/sensu"
+      - sensu-load-balancer
+    command: "sensu-agent start --backend-url ws://sensu-load-balancer:8081 --subscriptions webserver,system --cache-dir /var/lib/sensu"
 
 networks:
-  sensu-backend:
+  sensu-load-balancer:
     external:
-      name: sensu-backend
+      name: sensu-load-balancer
