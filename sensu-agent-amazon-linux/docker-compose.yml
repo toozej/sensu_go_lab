@@ -1,0 +1,42 @@
+version: "3"
+services:
+  sensu-agent-amazon-linux-1:
+    container_name: sensu-agent-amazon-linux-1
+    build:
+      context: .
+      dockerfile: Dockerfile_amazonlinux1
+    image: toozej/sensu-agent-amazon-linux:1
+    hostname: sensu-agent-amazon-linux-1
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - "./data1:/var/lib/sensu"
+      - "./agent1.yml:/etc/sensu/agent.yml"
+      - "../ssl:/etc/sensu/ssl"
+    networks:
+      - sensu-load-balancer
+    command: "sensu-agent start"
+
+  sensu-agent-amazon-linux-2:
+    container_name: sensu-agent-amazon-linux-2
+    build:
+      context: .
+      dockerfile: Dockerfile_amazonlinux2
+    image: toozej/sensu-agent-amazon-linux:2
+    hostname: sensu-agent-amazon-linux-2
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - "./data2:/var/lib/sensu"
+      - "./agent2.yml:/etc/sensu/agent.yml"
+      - "../ssl:/etc/sensu/ssl"
+    networks:
+      - sensu-load-balancer
+    command: "sensu-agent start"
+
+networks:
+  sensu-load-balancer:
+    external:
+      name: sensu-load-balancer

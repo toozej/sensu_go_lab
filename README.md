@@ -29,25 +29,36 @@ cd sensu-load-balancer
 docker-compose up --build -d
 cd ../
 ```
-4. start Sensu Go (official) agent
+4. start Sensu Go agents
 ```bash
-cd sensu-agent
-docker-compose up --build -d
-cd ../
+for agent in sensu-agent sensu-agent-amazon-linux sensu-agent-centos sensu-agent-debian sensu-agent-ubuntu
+do
+    cd $agent
+    docker-compose up --build -d
+    cd ../
+done
 ```
-5. start Sensu Go CentOS agents
+5. configure Sensuctl
 ```bash
-cd sensu-agent-centos
-docker-compose up --build -d
-cd ../
+mkdir -p ~/.config/sensu/sensuctl
+ln -s sensuctl/cluster ~/.config/sensu/sensuctl/cluster
+ln -s sensuctl/profile ~/.config/sensu/sensuctl/profile
 ```
-6. load Sensu Go configurations such as assets, filters, handlers, etc.
+6. change default agent user password
+```
+sensuctl user change-password agent --current-password P@ssw0rd! --new-password password123
+```
+7. load Sensu Go configurations such as assets, filters, handlers, etc.
 ```bash
 cd sensu-backend/config/
 for file in `find . -type f -name "*.yml" -or -name "*.yaml" -or -name "*.json"`; do sensuctl create --file $file --trusted-ca-file ../../ssl/ca/ca.pem; done
 cd ../../
 ```
-7. ensure Sensu Go cluster health is good
+8. ensure Sensu Go cluster health is good
 ```bash
 sensuctl cluster health --trusted-ca-file ./ssl/ca/ca.pem
+```
+9. ensure agents are checking into Sensu Go cluster
+```bash
+sensuctl entity list
 ```

@@ -5,16 +5,16 @@
 # switch the comments for ".PHONY", "CFSSL", "JSON" and "all" sections, and uncomment "cfssl" section 
 
 
-#.PHONY: cfssl ca etcd api dashboard agent clean
-.PHONY: ca etcd api dashboard agent clean 
+#.PHONY: cfssl ca etcd api dashboard agent grafana clean
+.PHONY: ca etcd api dashboard agent grafana clean 
 
 #CFSSL	= @env PATH=$(GOPATH)/bin:$(PATH) cfssl
 #JSON	= env PATH=$(GOPATH)/bin:$(PATH) cfssljson
 CFSSL	= docker run --rm --name cfssl -v $(CURDIR):/go/src/github.com/cloudflare/cfssl cfssl/cfssl:latest
 JSON	= docker run --rm --name cfssljson --entrypoint=cfssljson -v $(CURDIR):/go/src/github.com/cloudflare/cfssl cfssl/cfssl:latest
 
-#all: cfssl ca etcd api dashboard agent
-all: ca etcd api dashboard agent
+#all: cfssl ca etcd api dashboard agent grafana
+all: ca etcd api dashboard agent grafana
 
 #cfssl:
 #	go get -u -tags nopkcs11 github.com/cloudflare/cfssl/cmd/cfssl
@@ -141,5 +141,17 @@ agent:
 	# combine the Sensu Agent combined cert/key pairs into one file to be used by HAproxy
 	cat agent/sensu-agent-*combined.pem > agent/all-combined.pem
 
+grafana:
+	# generate webUI grafana cert
+	$(CFSSL) gencert \
+	  -ca ca/ca.pem \
+	  -ca-key ca/ca-key.pem \
+	  -config ca/ca-config.json \
+	  grafana/grafana-csr.json > grafana/grafana-cert.json
+	$(JSON) -bare -f grafana/grafana-cert.json grafana/grafana
+	cat grafana/grafana.pem grafana/grafana-key.pem > grafana/grafana-combined.pem
+	cat dashboard/dashboard-combined.pem grafana/grafana-combined.pem > haproxy/dashboard-grafana-combined.pem
+	rm grafana/grafana-cert.json
+
 clean:
-	rm -rf ca/*.pem ca/*.csr etcd/*.pem etcd/*.csr api/*.pem api/*.csr dashboard/*.pem dashboard/*.csr agent/*.pem agent/*.csr 
+	rm -rf ca/*.pem ca/*.csr etcd/*.pem etcd/*.csr api/*.pem api/*.csr dashboard/*.pem dashboard/*.csr agent/*.pem agent/*.csr grafana/*.pem grafana/*.csr

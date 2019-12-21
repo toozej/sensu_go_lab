@@ -16,6 +16,7 @@ services:
       - sensu-load-balancer
     volumes:
       - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
+      - "./backend.map:/usr/local/etc/haproxy/backend.map"
       - "../ssl:/etc/sensu/ssl"
 networks:
   sensu-load-balancer:

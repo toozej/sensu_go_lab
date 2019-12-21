@@ -1,12 +1,12 @@
 version: "3"
 services:
-  sensu-agent-centos-1:
-    container_name: sensu-agent-centos-1
+  sensu-agent-debian-1:
+    container_name: sensu-agent-debian-1
     build:
       context: .
-      dockerfile: Dockerfile_centos6
-    image: toozej/sensu-agent-centos:6
-    hostname: sensu-agent-centos-1
+      dockerfile: Dockerfile_debian8
+    image: toozej/sensu-agent-debian:8
+    hostname: sensu-agent-debian-1
     restart: unless-stopped
     labels:
       - "traefik.enable=false"
@@ -18,13 +18,13 @@ services:
       - sensu-load-balancer
     command: "sensu-agent start"
 
-  sensu-agent-centos-2:
-    container_name: sensu-agent-centos-2
+  sensu-agent-debian-2:
+    container_name: sensu-agent-debian-2
     build:
       context: .
-      dockerfile: Dockerfile_centos7
-    image: toozej/sensu-agent-centos:7
-    hostname: sensu-agent-centos-2
+      dockerfile: Dockerfile_debian9
+    image: toozej/sensu-agent-debian:9
+    hostname: sensu-agent-debian-2
     restart: unless-stopped
     labels:
       - "traefik.enable=false"
@@ -36,13 +36,13 @@ services:
       - sensu-load-balancer
     command: "sensu-agent start"
 
-  sensu-agent-centos-3:
-    container_name: sensu-agent-centos-3
+  sensu-agent-debian-3:
+    container_name: sensu-agent-debian-3
     build:
       context: .
-      dockerfile: Dockerfile_centos8
-    image: toozej/sensu-agent-centos:8
-    hostname: sensu-agent-centos-3
+      dockerfile: Dockerfile_debian10
+    image: toozej/sensu-agent-debian:10
+    hostname: sensu-agent-debian-3
     restart: unless-stopped
     labels:
       - "traefik.enable=false"
