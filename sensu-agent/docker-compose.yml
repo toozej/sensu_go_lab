@@ -12,7 +12,7 @@ services:
       - "../ssl:/etc/sensu/ssl"
     networks:
       - sensu-load-balancer
-    command: "sensu-agent start --backend-url wss://sensu-load-balancer:8081 --subscriptions webserver,system --cache-dir /var/lib/sensu --trusted-ca-file /etc/sensu/ssl/ca/ca.pem"
+    command: "sensu-agent start --backend-url wss://sensu-load-balancer:8081 --subscriptions webserver,system --cache-dir /var/lib/sensu --trusted-ca-file /etc/sensu/ssl/ca/ca.pem --user agent --password password123"
 
 networks:
   sensu-load-balancer:

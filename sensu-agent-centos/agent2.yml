@@ -36,8 +36,8 @@ log-level: "debug" # available log levels: panic, fatal, error, warn, info, debu
 ##
 # authentication configuration
 ##
-#user: "agent"
-#password: "P@ssw0rd!"
+user: "agent"
+password: "password123"
 
 ##
 # monitoring configuration

@@ -1,0 +1,7 @@
+FROM amazonlinux:2
+
+RUN curl -s https://packagecloud.io/install/repositories/sensu/stable/script.rpm.sh | bash
+RUN yum install -y shadow-utils sensu-go-agent
+
+EXPOSE 2379 2380 8080 8081 3000
+CMD ["/usr/sbin/sensu-agent"]

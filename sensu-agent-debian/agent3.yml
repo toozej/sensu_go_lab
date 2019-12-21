@@ -4,7 +4,7 @@
 ##
 # agent overview
 ##
-name: "sensu-agent-centos-3"
+name: "sensu-agent-debian-3"
 namespace: "default"
 subscriptions:
   - system

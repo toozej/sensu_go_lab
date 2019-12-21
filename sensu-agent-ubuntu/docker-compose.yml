@@ -1,0 +1,42 @@
+version: "3"
+services:
+  sensu-agent-ubuntu-1:
+    container_name: sensu-agent-ubuntu-1
+    build:
+      context: .
+      dockerfile: Dockerfile_ubuntu1604
+    image: toozej/sensu-agent-ubuntu:1604
+    hostname: sensu-agent-ubuntu-1
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - "./data1:/var/lib/sensu"
+      - "./agent1.yml:/etc/sensu/agent.yml"
+      - "../ssl:/etc/sensu/ssl"
+    networks:
+      - sensu-load-balancer
+    command: "sensu-agent start"
+
+  sensu-agent-ubuntu-2:
+    container_name: sensu-agent-ubuntu-2
+    build:
+      context: .
+      dockerfile: Dockerfile_ubuntu1804
+    image: toozej/sensu-agent-ubuntu:1804
+    hostname: sensu-agent-ubuntu-2
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - "./data2:/var/lib/sensu"
+      - "./agent2.yml:/etc/sensu/agent.yml"
+      - "../ssl:/etc/sensu/ssl"
+    networks:
+      - sensu-load-balancer
+    command: "sensu-agent start"
+
+networks:
+  sensu-load-balancer:
+    external:
+      name: sensu-load-balancer
