@@ -5,11 +5,14 @@ cd ssl/
 make
 cd ../
 
+# create necessary docker networks
+docker network create sensu-load-balancer
+docker network create sensu-backend
+
 # start Sensu Go backend
 cd sensu-backend
 rm -rf data1 data2 data3
 mkdir data1 data2 data3
-docker network create sensu-backend
 docker-compose up --build -d
 cd ../
 echo "waiting 10 seconds" && sleep 10
@@ -22,7 +25,6 @@ echo "waiting 10 seconds" && sleep 10
 
 # start HAproxy load balancer
 cd sensu-load-balancer
-docker network create sensu-load-balancer
 docker-compose up --build -d
 cd ../
 echo "waiting 10 seconds" && sleep 10
