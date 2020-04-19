@@ -16,4 +16,4 @@ spec:
     - ALERTS_SLACK_WEBHOOK=https://hooks.slack.com/services/blahblahblah
     - ALERTS_SLACK_CHANNEL=#sensu-alerts
   runtime_assets:
-    - sensu-slack-handler
+    - sensu/sensu-slack-handler

@@ -10,7 +10,7 @@ metadata:
     fatigue_check/suppress_flapping: "true"
 spec:
   check_hooks: null
-  command: check_swap -w 99% -c 10%
+  command: check_swap -w 50% -c 5% -n ok
   env_vars: null
   handlers: ["slack-pages", "slack-alerts"]
   high_flap_threshold: 0
@@ -22,8 +22,7 @@ spec:
   publish: true
   round_robin: false
   runtime_assets:
-    - monitoring-plugins_alpine_amd64
-    - monitoring-plugins_centos_amd64
+    - sensu/monitoring-plugins
   stdin: false
   subdue: null
   subscriptions:

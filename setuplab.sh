@@ -31,8 +31,8 @@ echo "waiting 10 seconds" && sleep 10
 
 # configure Sensuctl
 mkdir -p ~/.config/sensu/sensuctl
-ln -s sensuctl/cluster ~/.config/sensu/sensuctl/cluster
-ln -s sensuctl/profile ~/.config/sensu/sensuctl/profile
+ln -s "$(pwd)/sensuctl/cluster" ~/.config/sensu/sensuctl/cluster
+ln -s "$(pwd)/sensuctl/profile" ~/.config/sensu/sensuctl/profile
 sensuctl configure --non-interactive --username admin --password 'P@ssw0rd!' --trusted-ca-file "$(pwd)/ssl/ca/ca.pem"
 
 # change default agent user password

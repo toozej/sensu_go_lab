@@ -22,8 +22,7 @@ spec:
   publish: true
   round_robin: false
   runtime_assets:
-    - monitoring-plugins_alpine_amd64
-    - monitoring-plugins_centos_amd64
+    - sensu/monitoring-plugins
   stdin: false
   subdue: null
   subscriptions:
