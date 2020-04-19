@@ -10,15 +10,15 @@ Basic installation of Sensu Go to pit against Icinga 2 and other monitoring syst
 
 ## initial installation
 ```bash
-./setuplab.sh
+sudo ./setuplab.sh
 ```
 
 ## stop lab after done with it
 ```bash
-./stoplab.sh
+sudo ./stoplab.sh
 ```
 
 ## start lab after initial installation
 ```bash
-./startlab.sh
+sudo ./startlab.sh
 ```

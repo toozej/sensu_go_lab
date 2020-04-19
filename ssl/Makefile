@@ -150,7 +150,6 @@ grafana:
 	  grafana/grafana-csr.json > grafana/grafana-cert.json
 	$(JSON) -bare -f grafana/grafana-cert.json grafana/grafana
 	cat grafana/grafana.pem grafana/grafana-key.pem > grafana/grafana-combined.pem
-	cat dashboard/dashboard-combined.pem grafana/grafana-combined.pem > haproxy/dashboard-grafana-combined.pem
 	rm grafana/grafana-cert.json
 
 clean:
