@@ -26,6 +26,7 @@ echo "waiting 10 seconds" && sleep 10
 
 # start Grafana
 cd grafana
+mkdir -m 0777 data
 docker-compose up --build -d
 cd ../
 echo "waiting 10 seconds" && sleep 10
