@@ -9,10 +9,12 @@ cd ../
 docker network create sensu-load-balancer
 docker network create sensu-backend
 
-# add hostfile entry if it doesn't already exist
-if ! grep -q "sensu.lab.test" /etc/hosts; then
-    echo "127.0.0.1 sensu.lab.test" | sudo tee -a /etc/hosts
-fi
+# add hostfile entries if they doesn't already exist
+for PROJECT in sensu grafana; do
+    if ! grep -q "${PROJECT}.lab.test" /etc/hosts; then
+        echo "127.0.0.1 ${PROJECT}.lab.test" | sudo tee -a /etc/hosts
+    fi
+done
 
 # start Sensu Go backend
 cd sensu-backend
