@@ -1,5 +1,5 @@
 {
   "api-url": "https://sensu.lab.test:8080",
-  "trusted-ca-file": "~/src/github/toozej/sensu-go-poc/ssl/ca/ca.pem",
+  "trusted-ca-file": "/home/james/src/github/toozej/sensu-go-poc/ssl/ca/ca.pem",
   "insecure-skip-tls-verify": false
 }

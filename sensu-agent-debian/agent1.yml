@@ -19,7 +19,7 @@ labels:
 # agent configuration
 ##
 backend-url:
-  - "wss://sensu-backend:8081"
+  - "wss://sensu-load-balancer:8081"
 cache-dir: "/var/cache/sensu/sensu-agent"
 config-file: "/etc/sensu/agent.yml"
 disable-assets: false

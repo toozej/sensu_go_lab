@@ -17,4 +17,4 @@ spec:
     - PAGES_SLACK_WEBHOOK=https://hooks.slack.com/services/blahblah
     - PAGES_SLACK_CHANNEL=#sensu-pages
   runtime_assets:
-    - sensu-slack-handler
+    - sensu/sensu-slack-handler

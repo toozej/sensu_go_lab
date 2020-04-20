@@ -9,4 +9,4 @@ spec:
   expressions:
     - fatigue_check(event)
   runtime_assets:
-    - fatigue-check-filter
+    - nixwiz/sensu-go-fatigue-check-filter

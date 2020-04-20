@@ -149,6 +149,8 @@ grafana:
 	  -config ca/ca-config.json \
 	  grafana/grafana-csr.json > grafana/grafana-cert.json
 	$(JSON) -bare -f grafana/grafana-cert.json grafana/grafana
+	# grafana fails to start due to not having permissions to load key, must set its permissions to readable
+	chmod 0755 grafana/grafana-key.pem
 	cat grafana/grafana.pem grafana/grafana-key.pem > grafana/grafana-combined.pem
 	cat dashboard/dashboard-combined.pem grafana/grafana-combined.pem > haproxy/dashboard-grafana-combined.pem
 	rm grafana/grafana-cert.json

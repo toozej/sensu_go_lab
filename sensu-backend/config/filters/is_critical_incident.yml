@@ -9,8 +9,7 @@ metadata:
 spec:
   action: deny
   expressions:
-    # deny (filter) event if status is warning (1) or OK (0), and event is not a resolution
+    # deny (filter) event if status is warning (1) or OK (0)
     # to be used to avoid sending warnings and OKs to pager
-    - event.check.status <= 1 && event.is_resolution == false
-    # TODO need to fix that non-critical resolutions make it through this filter
+    - event.check.status <= 1
   runtime_assets: []
