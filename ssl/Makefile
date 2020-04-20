@@ -103,6 +103,7 @@ dashboard:
 	  dashboard/dashboard-csr.json > dashboard/dashboard-cert.json
 	$(JSON) -bare -f dashboard/dashboard-cert.json dashboard/dashboard
 	cat dashboard/dashboard.pem dashboard/dashboard-key.pem > dashboard/dashboard-combined.pem
+	cat dashboard/dashboard-combined.pem grafana/grafana-combined.pem > haproxy/dashboard-grafana-combined.pem
 	rm dashboard/dashboard-cert.json
 
 agent:
@@ -150,6 +151,7 @@ grafana:
 	  grafana/grafana-csr.json > grafana/grafana-cert.json
 	$(JSON) -bare -f grafana/grafana-cert.json grafana/grafana
 	cat grafana/grafana.pem grafana/grafana-key.pem > grafana/grafana-combined.pem
+	cat dashboard/dashboard-combined.pem grafana/grafana-combined.pem > haproxy/dashboard-grafana-combined.pem
 	rm grafana/grafana-cert.json
 
 clean:
