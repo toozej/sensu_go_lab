@@ -16,7 +16,7 @@ before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   - sudo apt-get update -qq
-  - sudo apt-get install libnss3-tools ca-certificates
+  - sudo apt-get install libnss3-tools ca-certificates openssl
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
@@ -28,8 +28,9 @@ before_install:
 
 script:
   - chmod +x setuplab.sh && sudo ./setuplab.sh
-  # add self-signed certificates to trusted certificates store using https://stackoverflow.com/questions/17597457/why-wont-curl-recognise-a-self-signed-ssl-certificate/21262787#21262787 
-  - sudo cp ssl/ca/ca.pem /usr/local/share/ca-certificates/
+  # add self-signed certificates to trusted certificates store using https://stackoverflow.com/questions/17597457/why-wont-curl-recognise-a-self-signed-ssl-certificate/21262787#21262787
+  - sudo openssl x509 -outform der -in ssl/ca/ca.pem -out ssl/ca/ca.crt
+  - sudo cp ssl/ca/ca.crt /usr/local/share/ca-certificates/
   - sudo update-ca-certificates --fresh
   # curl compose projects to ensure they're actually running
   - curl -s -L https://sensu.lab.test | grep "Client sent an API request to the web application port" ||  exit 1
