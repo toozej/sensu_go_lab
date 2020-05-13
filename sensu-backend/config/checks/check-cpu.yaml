@@ -22,7 +22,7 @@ spec:
   publish: true
   round_robin: false
   runtime_assets:
-    - sensu-go-cpu-check
+    - asachs01/sensu-go-cpu-check
   stdin: false
   subdue: null
   subscriptions:
