@@ -22,6 +22,9 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+  # install sensuctl
+  - curl -s https://packagecloud.io/install/repositories/sensu/stable/script.deb.sh | sudo bash
+  - sudo apt-get install -y sensu-go-cli
 
 script:
   - chmod +x setuplab.sh && ./setuplab.sh
