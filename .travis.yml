@@ -27,7 +27,7 @@ before_install:
   - sudo apt-get install -y sensu-go-cli
 
 script:
-  - chmod +x setuplab.sh && ./setuplab.sh
+  - chmod +x setuplab.sh && sudo ./setuplab.sh
   # add self-signed certificates to trusted certificates store using https://stackoverflow.com/questions/17597457/why-wont-curl-recognise-a-self-signed-ssl-certificate/21262787#21262787 
   - sudo cp ssl/ca/ca.pem /usr/local/share/ca-certificates/
   - sudo update-ca-certificates --fresh
