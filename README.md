@@ -1,6 +1,6 @@
-# Sensu Go Proof of Concept
+# Sensu Go Lab
 
-Basic installation of Sensu Go to pit against Icinga 2 and other monitoring systems to help my DevOps team decide which monitoring platform to choose for real-time systems monitoring. 
+Basic installation of Sensu Go for testing new versions, checks, assets, etc. 
 
 ## assumptions
 - working Docker and Docker-compose installation
