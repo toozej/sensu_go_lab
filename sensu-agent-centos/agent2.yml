@@ -9,8 +9,9 @@ namespace: "default"
 subscriptions:
   - system
 labels:
-  environment: "dev"
-  host_type: "db"
+  environment: "prod"
+  host_type: "web"
+#  example_key: "example value"
 #annotations:
 #  example/key: "example value"
 
@@ -50,8 +51,8 @@ password: "password123"
 ##
 # security configuration
 ##
-#cert-file: "/etc/sensu/ssl/agent/sensu-agent-centos-2.pem"
-#key-file: "/etc/sensu/ssl/agent/sensu-agent-centos-2-key.pem"
+#cert-file: "/etc/sensu/ssl/agent/sensu-agent-centos-3.pem"
+#key-file: "/etc/sensu/ssl/agent/sensu-agent-centos-3-key.pem"
 trusted-ca-file: "/etc/sensu/ssl/ca/ca.pem"
 insecure-skip-tls-verify: false
 #redact:

@@ -8,10 +8,9 @@ name: "sensu-agent-centos-1"
 namespace: "default"
 subscriptions:
   - system
-  - jenkins
 labels:
-  environment: "prod"
-  host_type: "jenkins"
+  environment: "dev"
+  host_type: "db"
 #annotations:
 #  example/key: "example value"
 
@@ -51,8 +50,8 @@ password: "password123"
 ##
 # security configuration
 ##
-#cert-file: "/etc/sensu/ssl/agent/sensu-agent-centos-1.pem"
-#key-file: "/etc/sensu/ssl/agent/sensu-agent-centos-1-key.pem"
+#cert-file: "/etc/sensu/ssl/agent/sensu-agent-centos-2.pem"
+#key-file: "/etc/sensu/ssl/agent/sensu-agent-centos-2-key.pem"
 trusted-ca-file: "/etc/sensu/ssl/ca/ca.pem"
 insecure-skip-tls-verify: false
 #redact:

@@ -1,11 +1,12 @@
 version: "3"
 services:
+
   sensu-agent-centos-1:
     container_name: sensu-agent-centos-1
     build:
       context: .
-      dockerfile: Dockerfile_centos6
-    image: toozej/sensu-agent-centos:6
+      dockerfile: Dockerfile_centos7
+    image: toozej/sensu-agent-centos:7
     hostname: sensu-agent-centos-1
     restart: unless-stopped
     labels:
@@ -22,8 +23,8 @@ services:
     container_name: sensu-agent-centos-2
     build:
       context: .
-      dockerfile: Dockerfile_centos7
-    image: toozej/sensu-agent-centos:7
+      dockerfile: Dockerfile_centos8
+    image: toozej/sensu-agent-centos:8
     hostname: sensu-agent-centos-2
     restart: unless-stopped
     labels:
@@ -31,24 +32,6 @@ services:
     volumes:
       - "./data2:/var/lib/sensu"
       - "./agent2.yml:/etc/sensu/agent.yml"
-      - "../ssl:/etc/sensu/ssl"
-    networks:
-      - sensu-load-balancer
-    command: "sensu-agent start"
-
-  sensu-agent-centos-3:
-    container_name: sensu-agent-centos-3
-    build:
-      context: .
-      dockerfile: Dockerfile_centos8
-    image: toozej/sensu-agent-centos:8
-    hostname: sensu-agent-centos-3
-    restart: unless-stopped
-    labels:
-      - "traefik.enable=false"
-    volumes:
-      - "./data3:/var/lib/sensu"
-      - "./agent3.yml:/etc/sensu/agent.yml"
       - "../ssl:/etc/sensu/ssl"
     networks:
       - sensu-load-balancer
