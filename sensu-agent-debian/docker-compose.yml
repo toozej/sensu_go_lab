@@ -1,11 +1,12 @@
 version: "3"
 services:
+
   sensu-agent-debian-1:
     container_name: sensu-agent-debian-1
     build:
       context: .
-      dockerfile: Dockerfile_debian8
-    image: toozej/sensu-agent-debian:8
+      dockerfile: Dockerfile_debian9
+    image: toozej/sensu-agent-debian:9
     hostname: sensu-agent-debian-1
     restart: unless-stopped
     labels:
@@ -22,8 +23,8 @@ services:
     container_name: sensu-agent-debian-2
     build:
       context: .
-      dockerfile: Dockerfile_debian9
-    image: toozej/sensu-agent-debian:9
+      dockerfile: Dockerfile_debian10
+    image: toozej/sensu-agent-debian:10
     hostname: sensu-agent-debian-2
     restart: unless-stopped
     labels:
@@ -31,24 +32,6 @@ services:
     volumes:
       - "./data2:/var/lib/sensu"
       - "./agent2.yml:/etc/sensu/agent.yml"
-      - "../ssl:/etc/sensu/ssl"
-    networks:
-      - sensu-load-balancer
-    command: "sensu-agent start"
-
-  sensu-agent-debian-3:
-    container_name: sensu-agent-debian-3
-    build:
-      context: .
-      dockerfile: Dockerfile_debian10
-    image: toozej/sensu-agent-debian:10
-    hostname: sensu-agent-debian-3
-    restart: unless-stopped
-    labels:
-      - "traefik.enable=false"
-    volumes:
-      - "./data3:/var/lib/sensu"
-      - "./agent3.yml:/etc/sensu/agent.yml"
       - "../ssl:/etc/sensu/ssl"
     networks:
       - sensu-load-balancer
