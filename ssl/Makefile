@@ -10,8 +10,8 @@
 
 #CFSSL	= @env PATH=$(GOPATH)/bin:$(PATH) cfssl
 #JSON	= env PATH=$(GOPATH)/bin:$(PATH) cfssljson
-CFSSL	= docker run --rm --name cfssl -v $(CURDIR):/go/src/github.com/cloudflare/cfssl cfssl/cfssl:latest
-JSON	= docker run --rm --name cfssljson --entrypoint=cfssljson -v $(CURDIR):/go/src/github.com/cloudflare/cfssl cfssl/cfssl:latest
+CFSSL	= docker run --rm --name cfssl -v $(CURDIR):/go/src/github.com/cloudflare/cfssl --workdir=/go/src/github.com/cloudflare/cfssl cfssl/cfssl:latest
+JSON	= docker run --rm --name cfssljson --entrypoint=cfssljson -v $(CURDIR):/go/src/github.com/cloudflare/cfssl --workdir=/go/src/github.com/cloudflare/cfssl cfssl/cfssl:latest
 
 #all: cfssl ca etcd api dashboard agent grafana
 all: ca etcd api dashboard agent grafana
