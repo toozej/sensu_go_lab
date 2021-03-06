@@ -2,7 +2,7 @@ version: "3"
 services:
   sensu-backend-1:
     container_name: sensu-backend-1
-    image: sensu/sensu:latest
+    image: "sensu/sensu:${TAG}"
     hostname: sensu-backend-1
     restart: unless-stopped
     ports:
@@ -16,12 +16,12 @@ services:
       - sensu-backend
     volumes:
       - "./data1:/var/lib/sensu"
-      - "./backend1.yml:/etc/sensu/backend.yml"
+      - "./backend1_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
     command: "sensu-backend start"
   sensu-backend-2:
     container_name: sensu-backend-2
-    image: sensu/sensu:latest
+    image: "sensu/sensu:${TAG}"
     hostname: sensu-backend-2
     restart: unless-stopped
     ports:
@@ -34,12 +34,12 @@ services:
       - sensu-backend
     volumes:
       - "./data2:/var/lib/sensu"
-      - "./backend2.yml:/etc/sensu/backend.yml"
+      - "./backend2_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
     command: "sensu-backend start"
   sensu-backend-3:
     container_name: sensu-backend-3
-    image: sensu/sensu:latest
+    image: "sensu/sensu:${TAG}"
     hostname: sensu-backend-3
     restart: unless-stopped
     ports:
@@ -52,7 +52,7 @@ services:
       - sensu-backend
     volumes:
       - "./data3:/var/lib/sensu"
-      - "./backend3.yml:/etc/sensu/backend.yml"
+      - "./backend3_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
     command: "sensu-backend start"
 networks:

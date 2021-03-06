@@ -23,9 +23,26 @@ jobs:
       - name: Install Sensu Go CLI tool
         run: curl -s https://packagecloud.io/install/repositories/sensu/stable/script.deb.sh | sudo bash && sudo apt-get install -y sensu-go-cli
 
-      - name: Run compose project and set up certificates
+      - name: Run compose project for Sensu Go v5 and set up certificates
         run: |
-          chmod +x setuplab.sh && sudo ./setuplab.sh
+          chmod +x setuplab.sh && sudo ./setuplab.sh 5
+          # add self-signed certificates to trusted certificates store using https://stackoverflow.com/questions/17597457/why-wont-curl-recognise-a-self-signed-ssl-certificate/21262787#21262787
+          sudo cp ssl/ca/ca.pem /usr/local/share/ca-certificates/sensu_go_lab_ca.crt
+          echo "sensu_go_lab_ca.crt" | sudo tee -a /etc/ca-certificates.conf
+          sudo update-ca-certificates --fresh
+
+      - name: Check services are up and responding
+        run: |
+          curl -s -L https://sensu.lab.test | grep "Client sent an API request to the web application port" ||  exit 1
+          curl -s -L https://grafana.lab.test | grep Found ||  exit 1
+          echo "if we got to this point the test has finished successfully, exiting." && exit 0
+      
+      - name: Stop compose project for Sensu Go v5
+        run: chmod +x stoplab.sh && sudo ./stoplab.sh
+
+      - name: Run compose project for Sensu Go v6 and set up certificates
+        run: |
+          chmod +x setuplab.sh && sudo ./setuplab.sh 6
           # add self-signed certificates to trusted certificates store using https://stackoverflow.com/questions/17597457/why-wont-curl-recognise-a-self-signed-ssl-certificate/21262787#21262787
           sudo cp ssl/ca/ca.pem /usr/local/share/ca-certificates/sensu_go_lab_ca.crt
           echo "sensu_go_lab_ca.crt" | sudo tee -a /etc/ca-certificates.conf

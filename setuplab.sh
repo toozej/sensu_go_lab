@@ -1,4 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# $1 should be the version number of Sensu Go backend to set up
+if [ -z "${1+x}" ]; then
+    echo "VERSION for Sensu Go Backend is unset, defaulting to 'latest'"
+    VERSION=latest
+else
+    VERSION=${1}
+    echo "setting up Sensu Go Backend version ${VERSION}"
+fi
 
 # generate SSL certificates and keys
 cd ssl/
@@ -20,9 +29,9 @@ done
 cd sensu-backend
 rm -rf data1 data2 data3
 mkdir data1 data2 data3
-docker-compose up --build -d
+docker-compose --env-file .env.${VERSION} up --build -d
 cd ../
-echo "waiting 10 seconds" && sleep 10
+echo "waiting 20 seconds" && sleep 20
 
 # start Grafana
 cd grafana
@@ -31,13 +40,13 @@ chown -R 472:472 data/ config/ provisioning/
 chmod 755 data/ config/ provisioning/
 docker-compose up --build -d
 cd ../
-echo "waiting 10 seconds" && sleep 10
+echo "waiting 20 seconds" && sleep 20
 
 # start HAproxy load balancer
 cd sensu-load-balancer
 docker-compose up --build -d
 cd ../
-echo "waiting 10 seconds" && sleep 10
+echo "waiting 20 seconds" && sleep 20
 
 # configure Sensuctl
 mkdir -p ~/.config/sensu/sensuctl

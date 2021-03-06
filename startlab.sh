@@ -1,11 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# $1 should be the version number of Sensu Go backend to start
+if [ -z "${1+x}" ]; then
+    echo "VERSION for Sensu Go Backend is unset, defaulting to 'latest'"
+    VERSION=latest
+else
+    VERSION=${1}
+    echo "starting up Sensu Go Backend version ${VERSION}"
+fi
 
 # generate SSL certificates and keys
 # skipping since already done in setuplab.sh
 
 # start Sensu Go backend
 cd sensu-backend
-docker-compose up --build -d
+docker-compose --env-file .env.${VERSION} up --build -d
 cd ../
 echo "waiting 10 seconds" && sleep 10
 

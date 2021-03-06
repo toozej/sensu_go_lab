@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 for DIR in $(find . -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*'); do
     cd ${DIR}
