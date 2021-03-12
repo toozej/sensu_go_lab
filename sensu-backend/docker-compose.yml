@@ -18,7 +18,7 @@ services:
       - "./data1:/var/lib/sensu"
       - "./backend1_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
-    command: "sensu-backend start"
+    command: "sensu-backend start --config-file /etc/sensu/backend.yml"
   sensu-backend-2:
     container_name: sensu-backend-2
     image: "sensu/sensu:${TAG}"
@@ -36,7 +36,7 @@ services:
       - "./data2:/var/lib/sensu"
       - "./backend2_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
-    command: "sensu-backend start"
+    command: "sensu-backend start --config-file /etc/sensu/backend.yml"
   sensu-backend-3:
     container_name: sensu-backend-3
     image: "sensu/sensu:${TAG}"
@@ -54,7 +54,7 @@ services:
       - "./data3:/var/lib/sensu"
       - "./backend3_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
-    command: "sensu-backend start"
+    command: "sensu-backend start --config-file /etc/sensu/backend.yml"
 networks:
   sensu-load-balancer:
     external:
