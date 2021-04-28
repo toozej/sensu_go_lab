@@ -18,7 +18,8 @@ services:
       - "./data1:/var/lib/sensu"
       - "./backend1_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
-    command: "sensu-backend start --config-file /etc/sensu/backend.yml"
+    #command: "sensu-backend start --config-file /etc/sensu/backend.yml"
+    command: sensu-backend start --etcd-listen-client-urls https://0.0.0.0:2379 --etcd-name sensu-backend-1 --etcd-advertise-client-urls https://sensu-backend-1:2379 --etcd-initial-cluster sensu-backend-1=https://sensu-backend-1:2380,sensu-backend-2=https://sensu-backend-2:2380,sensu-backend-3=https://sensu-backend-3:2380 --etcd-initial-cluster-state new --etcd-initial-advertise-peer-urls https://sensu-backend-1:2380 --state-dir /var/lib/sensu/sensu-backend/etcd1 --etcd-listen-peer-urls https://0.0.0.0:2380 --log-level debug --debug --etcd-cert-file /etc/sensu/ssl/etcd/sensu-backend-1.pem --etcd-client-cert-auth true --etcd-key-file /etc/sensu/ssl/etcd/sensu-backend-1-key.pem --etcd-peer-cert-file /etc/sensu/ssl/etcd/sensu-backend-1.pem --etcd-peer-client-cert-auth true --etcd-peer-key-file /etc/sensu/ssl/etcd/sensu-backend-1-key.pem --etcd-peer-trusted-ca-file /etc/sensu/ssl/ca/ca.pem --etcd-trusted-ca-file /etc/sensu/ssl/ca/ca.pem
   sensu-backend-2:
     container_name: sensu-backend-2
     image: "sensu/sensu:${TAG}"
@@ -36,7 +37,9 @@ services:
       - "./data2:/var/lib/sensu"
       - "./backend2_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
-    command: "sensu-backend start --config-file /etc/sensu/backend.yml"
+    #command: "sensu-backend start --config-file /etc/sensu/backend.yml"
+    command: sensu-backend start --etcd-listen-client-urls https://0.0.0.0:2379 --etcd-name sensu-backend-2 --etcd-advertise-client-urls https://sensu-backend-2:2379 --etcd-initial-cluster sensu-backend-1=https://sensu-backend-1:2380,sensu-backend-2=https://sensu-backend-2:2380,sensu-backend-3=https://sensu-backend-3:2380 --etcd-initial-cluster-state new --etcd-initial-advertise-peer-urls https://sensu-backend-2:2380 --state-dir /var/lib/sensu/sensu-backend/etcd2 --etcd-listen-peer-urls https://0.0.0.0:2380 --log-level debug --debug --etcd-cert-file /etc/sensu/ssl/etcd/sensu-backend-2.pem --etcd-client-cert-auth true --etcd-key-file /etc/sensu/ssl/etcd/sensu-backend-2-key.pem --etcd-peer-cert-file /etc/sensu/ssl/etcd/sensu-backend-2.pem --etcd-peer-client-cert-auth true --etcd-peer-key-file /etc/sensu/ssl/etcd/sensu-backend-2-key.pem --etcd-peer-trusted-ca-file /etc/sensu/ssl/ca/ca.pem --etcd-trusted-ca-file /etc/sensu/ssl/ca/ca.pem
+
   sensu-backend-3:
     container_name: sensu-backend-3
     image: "sensu/sensu:${TAG}"
@@ -54,7 +57,9 @@ services:
       - "./data3:/var/lib/sensu"
       - "./backend3_v${TAG}.yml:/etc/sensu/backend.yml"
       - "../ssl:/etc/sensu/ssl"
-    command: "sensu-backend start --config-file /etc/sensu/backend.yml"
+    #command: "sensu-backend start --config-file /etc/sensu/backend.yml"
+    command: sensu-backend start --etcd-listen-client-urls https://0.0.0.0:2379 --etcd-name sensu-backend-3 --etcd-advertise-client-urls https://sensu-backend-3:2379 --etcd-initial-cluster sensu-backend-1=https://sensu-backend-1:2380,sensu-backend-2=https://sensu-backend-2:2380,sensu-backend-3=https://sensu-backend-3:2380 --etcd-initial-cluster-state new --etcd-initial-advertise-peer-urls https://sensu-backend-3:2380 --state-dir /var/lib/sensu/sensu-backend/etcd3 --etcd-listen-peer-urls https://0.0.0.0:2380 --log-level debug --debug --etcd-cert-file /etc/sensu/ssl/etcd/sensu-backend-3.pem --etcd-client-cert-auth true --etcd-key-file /etc/sensu/ssl/etcd/sensu-backend-3-key.pem --etcd-peer-cert-file /etc/sensu/ssl/etcd/sensu-backend-3.pem --etcd-peer-client-cert-auth true --etcd-peer-key-file /etc/sensu/ssl/etcd/sensu-backend-3-key.pem --etcd-peer-trusted-ca-file /etc/sensu/ssl/ca/ca.pem --etcd-trusted-ca-file /etc/sensu/ssl/ca/ca.pem
+
 networks:
   sensu-load-balancer:
     external:

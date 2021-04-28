@@ -53,8 +53,8 @@ etcd-initial-cluster: "sensu-backend-1=https://sensu-backend-1:2380,sensu-backen
 etcd-initial-cluster-state: "new" # new or existing
 etcd-initial-cluster-token: "sensu"
 etcd-key-file: "/etc/sensu/ssl/etcd/sensu-backend-3-key.pem"
-etcd-listen-client-urls: "https://sensu-backend-3:2379"
-etcd-listen-peer-urls: "https://sensu-backend-3:2380"
+etcd-listen-client-urls: "https://localhost:2379"
+etcd-listen-peer-urls: "https://localhost:2380"
 etcd-name: "sensu-backend-3"
 etcd-peer-cert-file: "/etc/sensu/ssl/etcd/sensu-backend-3.pem"
 etcd-peer-client-cert-auth: true
