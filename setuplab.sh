@@ -20,7 +20,7 @@ done
 cd sensu-backend
 rm -rf data1 data2 data3
 mkdir data1 data2 data3
-docker-compose up --build -d
+/usr/bin/docker compose up --build -d
 cd ../
 echo "waiting 10 seconds" && sleep 10
 
@@ -29,13 +29,13 @@ cd grafana
 mkdir data
 chown -R 472:472 data/ config/ provisioning/
 chmod 755 data/ config/ provisioning/
-docker-compose up --build -d
+/usr/bin/docker compose up --build -d
 cd ../
 echo "waiting 10 seconds" && sleep 10
 
 # start HAproxy load balancer
 cd sensu-load-balancer
-docker-compose up --build -d
+/usr/bin/docker compose up --build -d
 cd ../
 echo "waiting 10 seconds" && sleep 10
 
@@ -50,27 +50,27 @@ sensuctl user change-password agent --current-password P@ssw0rd! --new-password 
 
 # start Sensu Go (official) agent
 cd sensu-agent
-docker-compose up --build -d
+/usr/bin/docker compose up --build -d
 cd ../
 
 # start Sensu Go CentOS agents
 cd sensu-agent-centos
-docker-compose up --build -d
+/usr/bin/docker compose up --build -d
 cd ../
 
 # start Sensu Go Amazon Linux agents
 cd sensu-agent-amazon-linux
-docker-compose up --build -d
+/usr/bin/docker compose up --build -d
 cd ../
 
 # start Sensu Go Debian agents
 cd sensu-agent-debian
-docker-compose up --build -d
+/usr/bin/docker compose up --build -d
 cd ../
 
 # start Sensu Go Ubuntu agents
 cd sensu-agent-ubuntu
-docker-compose up --build -d
+/usr/bin/docker compose up --build -d
 cd ../
 
 # load Sensu Go assets
